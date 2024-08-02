@@ -193,24 +193,29 @@
         }
         .chat-input {
             display: flex;
+            align-items: center;
             border-top: 1px solid #444;
             background-color: #2a3b4d;
             padding: 10px;
+        }
+        .chat-input .input-group {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
         }
         .chat-input input {
             flex-grow: 1;
             padding: 10px;
             border: 1px solid #333;
-            border-radius: 20px;
+            border-radius: 20px 0 0 20px;
             background-color: #3b4a5a;
             color: #ffffff;
             outline: none;
-            margin-right: 10px;
         }
         .chat-input button {
             background-color: #0088cc;
             border: none;
-            border-radius: 50%;
+            border-radius: 0 20px 20px 0;
             width: 40px;
             height: 40px;
             display: flex;
@@ -292,8 +297,9 @@
         </div>
     </div>
     <div class="chat-input">
-        <form th:action="@{/send-message}" method="post">
+        <form th:action="@{/send-message}" method="post" class="input-group">
             <input type="text" name="message" placeholder="Type a message" required>
+            <!-- Ensure the recipientId is set properly -->
             <input type="hidden" name="recipientId" th:value="${selectedUserId}" />
             <button type="submit"><i class="fas fa-paper-plane"></i></button>
         </form>

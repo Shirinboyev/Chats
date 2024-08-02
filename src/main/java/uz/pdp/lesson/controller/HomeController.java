@@ -72,7 +72,10 @@ public class HomeController {
             Chat chat = chatOpt.get();
             List<Message> selectedMessages = messageRepo.findByChatId(chat.getId());
             model.addAttribute("selectedUserId", userId);
-            model.addAttribute("selectedUserName", userRepo.findById(userId).getFullName());
+            User user = userRepo.findById(userId);
+            if (user != null) {
+                model.addAttribute("selectedUserName", user.getFullName());
+            }
             model.addAttribute("messages", selectedMessages);
         } else {
             model.addAttribute("error", "Chat not found");
